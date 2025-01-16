@@ -1189,7 +1189,7 @@ checksum = "2b15c43186be67a4fd63bee50d0303afffcef381492ebe2c5d87f324e1b8815c"
 [[package]]
 name = "remoteprocess"
 version = "0.5.0"
-source = "git+https://github.com/iotamudelta/remoteprocess?branch=wip#dddf7e28ed50ff9d531badbd68b6e728cdc69e37"
+source = "git+https://github.com/iotamudelta/remoteprocess?branch=wip#b55e76c472a6ba68fcecbe4904ab6cf473e8fdb6"
 dependencies = [
  "addr2line",
  "cfg-if",
