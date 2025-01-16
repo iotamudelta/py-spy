@@ -122,6 +122,7 @@ impl PythonSpy {
 
     /// Gets a StackTrace for each thread in the current process
     pub fn get_stack_traces(&mut self) -> Result<Vec<StackTrace>, Error> {
+        println!("Getting stack trace in py-spy.");
         match self.version {
             // ABI for 2.3/2.4/2.5/2.6/2.7 is compatible for our purpose
             Version {
