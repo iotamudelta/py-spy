@@ -302,11 +302,15 @@ impl PythonSpy {
                 if self.config.native {
                     println!("In native");
                     if let Some(native) = self.native.as_mut() {
+                        println!("Debug 1");
                         let thread_id = trace
                             .os_thread_id
                             .ok_or_else(|| format_err!("failed to get os threadid"))?;
+                        println!("Debug 2");
                         let os_thread = remoteprocess::Thread::new(thread_id as Tid)?;
-                        trace.frames = native.merge_native_thread(&trace.frames, &os_thread)?
+                        println!("Debug 3");
+                        trace.frames = native.merge_native_thread(&trace.frames, &os_thread)?;
+                        println!("Debug 4");
                     }
                 }
             }
