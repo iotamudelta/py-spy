@@ -308,7 +308,7 @@ impl NativeStack {
     fn get_thread(&mut self, thread: &remoteprocess::Thread) -> Result<Vec<u64>, Error> {
         let mut stack = Vec::new();
         for ip in self.unwinder.cursor(thread)? {
-            println!("IP {}", ip?);
+            println!("IP {}", ip);
             stack.push(ip?);
         }
         Ok(stack)
