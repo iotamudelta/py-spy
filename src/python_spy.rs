@@ -122,7 +122,6 @@ impl PythonSpy {
 
     /// Gets a StackTrace for each thread in the current process
     pub fn get_stack_traces(&mut self) -> Result<Vec<StackTrace>, Error> {
-        println!("Getting stack trace in py-spy.");
         match self.version {
             // ABI for 2.3/2.4/2.5/2.6/2.7 is compatible for our purpose
             Version {
@@ -295,22 +294,16 @@ impl PythonSpy {
                 trace.active = !self._heuristic_is_thread_idle(&trace);
             }
 
-            println!("native {}", self.config.native);
             // Merge in the native stack frames if necessary
             #[cfg(feature = "unwind")]
             {
                 if self.config.native {
-                    println!("In native");
                     if let Some(native) = self.native.as_mut() {
-                        println!("Debug 1");
                         let thread_id = trace
                             .os_thread_id
                             .ok_or_else(|| format_err!("failed to get os threadid"))?;
-                        println!("Debug 2");
                         let os_thread = remoteprocess::Thread::new(thread_id as Tid)?;
-                        println!("Debug 3");
                         trace.frames = native.merge_native_thread(&trace.frames, &os_thread)?;
-                        println!("Debug 4");
                     }
                 }
             }
