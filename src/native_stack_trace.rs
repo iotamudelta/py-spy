@@ -185,6 +185,15 @@ impl NativeStack {
                     python_frame_index,
                     frames.len()
                 ));
+                for (frame in frames){
+                    println!("Py frame {:?}", frame);
+                }
+                for addr in native_stack {
+                    println!("Native {:?}", addr);
+                }
+                for frame in merged {
+                    println!("Merged {:?}", merged);
+                }
             }
         }
 
