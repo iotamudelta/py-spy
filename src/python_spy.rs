@@ -299,9 +299,9 @@ impl PythonSpy {
             {
                 if self.config.native {
                     if let Some(native) = self.native.as_mut() {
-                        let thread_id = trace
-                            .os_thread_id
-                            .ok_or_else(|| format_err!("failed to get os threadid"))?;
+                        let thread_id = 0; //trace
+                            //.os_thread_id
+                            //.ok_or_else(|| format_err!("failed to get os threadid"))?;
                         let os_thread = remoteprocess::Thread::new(thread_id as Tid)?;
                         trace.frames = native.merge_native_thread(&trace.frames, &os_thread)?
                     }
