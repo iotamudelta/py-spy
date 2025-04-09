@@ -179,21 +179,31 @@ impl NativeStack {
                     python_frame_index,
                     frames.len()
                 );
+            } else if frames.len() == 0 {
+                // if there are no python frames in this thread, just plainly use the native frames
+                // (seen this case and suspect some spawn'd off native thread)
+                info!(
+                    "Have {} native and 0 python thread in stack - allowing for now",
+                    python_frame_index
+                    );
             } else {
+                println!("Py frames");
+                for frame in frames {
+                    println!("Py frame {:?}", frame);
+                }
+                //println!("Native frames");
+                //for addr in native_stack.iter().clone() {
+                //    println!("Native {:?}", addr);
+                //}
+                println!("Merged frames");
+                for frame in &merged {
+                    println!("Merged {:?}", merged);
+                }
                 return Err(format_err!(
                     "Failed to merge native and python frames (Have {} native and {} python)",
                     python_frame_index,
                     frames.len()
                 ));
-                for frame in frames {
-                    println!("Py frame {:?}", frame);
-                }
-                for addr in native_stack {
-                    println!("Native {:?}", addr);
-                }
-                for frame in merged {
-                    println!("Merged {:?}", merged);
-                }
             }
         }
 
